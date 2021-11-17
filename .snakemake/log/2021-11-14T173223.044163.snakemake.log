@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+remove_seqs            1              1              1
+run_remove_seqs        1              1              1
+total                  2              1              1
+
+Select jobs to execute...
+
+[Sun Nov 14 17:32:23 2021]
+rule remove_seqs:
+    input: /home/conrad/test-snakemake/snippy-core/12.full.aln
+    output: /home/conrad/test-snakemake/snippy-core/12.no_ref.full.aln
+    jobid: 1
+    wildcards: output=/home/conrad/test-snakemake/, st=12
+    resources: tmpdir=/tmp
+
+/home/conrad/anaconda3/envs/i18_snp_pipeline_env_testing/bin/python3.7 /home/conrad/test-snakemake/.snakemake/scripts/tmp__59g440.remove_seqs_function.py
+[Sun Nov 14 17:32:23 2021]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Sun Nov 14 17:32:23 2021]
+localrule run_remove_seqs:
+    input: /home/conrad/test-snakemake/snippy-core/12.no_ref.full.aln
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Sun Nov 14 17:32:23 2021]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-14T173223.044163.snakemake.log

@@ -1,0 +1,12 @@
+Building DAG of jobs...
+AmbiguousRuleException:
+Rules snippy_core and remove_seqs are ambiguous for the file /home/conrad/test-snakemake/snippy-core/12.no_ref.full.aln.
+Consider starting rule output with a unique prefix, constrain your wildcards, or use the ruleorder directive.
+Wildcards:
+	snippy_core: output=/home/conrad/test-snakemake/,st=12.no_ref
+	remove_seqs: output=/home/conrad/test-snakemake/,st=12
+Expected input files:
+	snippy_core: /home/conrad/test-snakemake/raw-snippy-output/A077-H36-15-04-2009 /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009 /home/conrad/test-snakemake/raw-snippy-output/A077-H201-11-05-2009 /home/conrad/test-snakemake/raw-snippy-output/A013-H12-09-07-2003 /home/conrad/test-snakemake/raw-snippy-output/A077-H202-25-05-2009
+	remove_seqs: /home/conrad/test-snakemake/snippy-core/12.full.alnExpected output files:
+	snippy_core: /home/conrad/test-snakemake/snippy-core/12.no_ref.full.aln
+	remove_seqs: /home/conrad/test-snakemake/snippy-core/12.no_ref.full.aln

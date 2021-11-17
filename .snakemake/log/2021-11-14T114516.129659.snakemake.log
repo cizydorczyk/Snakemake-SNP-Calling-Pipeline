@@ -1,0 +1,4 @@
+Building DAG of jobs...
+File path /home/conrad/test-snakemake//snippy-core/12.full.aln contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /home/conrad/test-snakemake//snippy-core/12.full.aln contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+Nothing to be done.

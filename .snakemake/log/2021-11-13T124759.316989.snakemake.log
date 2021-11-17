@@ -1,0 +1,23 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count    min threads    max threads
+---------------  -------  -------------  -------------
+snippy_A077_H36        1              1              1
+total                  1              1              1
+
+Select jobs to execute...
+
+[Sat Nov 13 12:47:59 2021]
+rule snippy_A077_H36:
+    input: /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz, /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz
+    jobid: 0
+    resources: tmpdir=/tmp
+
+echo "/home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz"
+[Sat Nov 13 12:47:59 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-13T124759.316989.snakemake.log

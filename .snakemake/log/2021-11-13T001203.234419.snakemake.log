@@ -1,0 +1,9 @@
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+Building DAG of jobs...
+MissingInputException in line 32 of /home/conrad/test-snakemake/Snakefile:
+Missing input files for rule all:
+A077-H201-11-05-2009
+A077-H138-28-05-2009
+A077-H36-15-04-2009

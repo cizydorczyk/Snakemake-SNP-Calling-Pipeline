@@ -1,0 +1,65 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count    min threads    max threads
+-----  -------  -------------  -------------
+all          1              1              1
+test         3              1              1
+total        4              1              1
+
+Select jobs to execute...
+
+[Fri Nov 12 23:49:22 2021]
+rule test:
+    input: /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz, /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz
+    output: A077-H36-15-04-2009.test.txt
+    jobid: 1
+    wildcards: sample=A077-H36-15-04-2009
+    resources: tmpdir=/tmp
+
+echo /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz; echo /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz > A077-H36-15-04-2009.test.txt
+[Fri Nov 12 23:49:22 2021]
+Finished job 1.
+1 of 4 steps (25%) done
+Select jobs to execute...
+
+[Fri Nov 12 23:49:22 2021]
+rule test:
+    input: /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_1.fastq.gz, /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_2.fastq.gz
+    output: A077-H138-28-05-2009.test.txt
+    jobid: 2
+    wildcards: sample=A077-H138-28-05-2009
+    resources: tmpdir=/tmp
+
+echo /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_2.fastq.gz; echo /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_2.fastq.gz > A077-H138-28-05-2009.test.txt
+[Fri Nov 12 23:49:22 2021]
+Finished job 2.
+2 of 4 steps (50%) done
+Select jobs to execute...
+
+[Fri Nov 12 23:49:22 2021]
+rule test:
+    input: /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_1.fastq.gz, /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_2.fastq.gz
+    output: A077-H201-11-05-2009.test.txt
+    jobid: 3
+    wildcards: sample=A077-H201-11-05-2009
+    resources: tmpdir=/tmp
+
+echo /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_2.fastq.gz; echo /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H201-11-05-2009_2.fastq.gz > A077-H201-11-05-2009.test.txt
+[Fri Nov 12 23:49:22 2021]
+Finished job 3.
+3 of 4 steps (75%) done
+Select jobs to execute...
+
+[Fri Nov 12 23:49:22 2021]
+localrule all:
+    input: A077-H36-15-04-2009.test.txt, A077-H138-28-05-2009.test.txt, A077-H201-11-05-2009.test.txt
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Fri Nov 12 23:49:22 2021]
+Finished job 0.
+4 of 4 steps (100%) done
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-12T234922.648969.snakemake.log

@@ -1,0 +1,3 @@
+WildcardError:
+No values given for wildcard 'st'.
+  File "/home/conrad/test-snakemake/Snakefile.smk", line 247, in <module>

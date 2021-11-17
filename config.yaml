@@ -1,0 +1,16 @@
+# snippy options:
+fastq_dir: "/home/conrad/test-snakemake/fastq-files/"
+project_dir: "/home/conrad/test-snakemake/"
+ref: "/home/conrad/test-snakemake/st12_ref.fna"
+st: "12"
+isolate_list: "/home/conrad/test-snakemake/isolate-list.txt"
+fastq_endings: "_1.fastq.gz,_2.fastq.gz"
+snippy_minfrac: "0.9"
+
+# remove ref and outgroups options:
+remove_ref: "Reference" # snippy always names the reference sequence 'Reference'; can be an empty string
+outgroups: "A013-H12-09-07-2003" # as many or as few outgroups as needed; comma separated list for >1; can be an empty string
+
+# iqtree options:
+bb: "10000" # change to set different number of rapid bootstraps
+model: "MFP" # change to specify a specific model

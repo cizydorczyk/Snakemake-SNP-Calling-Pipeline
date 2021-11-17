@@ -1,0 +1,31 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job       count    min threads    max threads
+------  -------  -------------  -------------
+all           1              1              1
+iqtree        2              1              1
+total         3              1              1
+
+Select jobs to execute...
+
+[Tue Nov 16 12:47:23 2021]
+rule iqtree:
+    input: /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln
+    output: /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.iqtree
+    jobid: 10
+    wildcards: output=/home/conrad/test-snakemake/, st=12, remove_seqs_flag=no_ref_without_outgroups.
+    resources: tmpdir=/tmp
+
+iqtree -s /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln -m MFP -bb 10000 -nt AUTO -pre /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 290 of /home/conrad/test-snakemake/Snakefile.smk:
+Job Missing files after 5 seconds:
+/home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.iqtree
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 10 completed successfully, but some output files are missing. 10
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-16T124722.511298.snakemake.log

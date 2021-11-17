@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job            count    min threads    max threads
+-----------  -------  -------------  -------------
+all                1              1              1
+remove_seqs        1              1              1
+total              2              1              1
+
+Select jobs to execute...
+
+[Sun Nov 14 23:25:05 2021]
+rule remove_seqs:
+    input: /home/conrad/test-snakemake/snippy-core/12.clean.full.aln
+    output: /home/conrad/test-snakemake/snippy-core/12.no_ref_no_outgroups.clean.full.aln
+    jobid: 8
+    wildcards: output=/home/conrad/test-snakemake/, st=12, remove_seqs_flag=no_ref_no_outgroups
+    resources: tmpdir=/tmp
+
+/home/conrad/anaconda3/envs/i18_snp_pipeline_env_testing/bin/python3.7 /home/conrad/test-snakemake/.snakemake/scripts/tmpm1u03xbn.remove_seqs_function.py
+[Sun Nov 14 23:25:05 2021]
+Error in rule remove_seqs:
+    jobid: 8
+    output: /home/conrad/test-snakemake/snippy-core/12.no_ref_no_outgroups.clean.full.aln
+
+Removing output files of failed job remove_seqs since they might be corrupted:
+/home/conrad/test-snakemake/snippy-core/12.no_ref_no_outgroups.clean.full.aln
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-14T232505.227495.snakemake.log

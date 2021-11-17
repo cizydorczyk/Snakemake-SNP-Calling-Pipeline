@@ -1,0 +1,8 @@
+Building DAG of jobs...
+InputFunctionException in line 41 of /home/conrad/test-snakemake/Snakefile:
+Error:
+  KeyError: 'fastq-files/A077-H36-15-04-2009_1.fastq.gz'
+Wildcards:
+  sample=fastq-files/A077-H36-15-04-2009_1.fastq.gz
+Traceback:
+  File "/home/conrad/test-snakemake/Snakefile", line 29, in get_reads

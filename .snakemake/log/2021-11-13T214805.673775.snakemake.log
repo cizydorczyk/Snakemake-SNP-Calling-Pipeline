@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job           count    min threads    max threads
+----------  -------  -------------  -------------
+run_snippy        3              1              1
+snippy            1              1              1
+total             4              1              1
+
+Select jobs to execute...
+
+[Sat Nov 13 21:48:05 2021]
+rule run_snippy:
+    input: /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz, /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz
+    output: /home/conrad/test-snakemake/A077-H36-15-04-2009
+    jobid: 1
+    wildcards: sample=A077-H36-15-04-2009
+    resources: tmpdir=/tmp
+
+snippy --R1 /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz --R2 /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz --ref /home/conrad/test-snakemake/st12_ref.fna --outdir /home/conrad/test-snakemake/A077-H36-15-04-2009 --cpus 8
+Terminating processes on user request, this might take some time.
+[Sat Nov 13 21:48:17 2021]
+Error in rule run_snippy:
+    jobid: 1
+    output: /home/conrad/test-snakemake/A077-H36-15-04-2009
+    shell:
+        snippy --R1 /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_1.fastq.gz --R2 /home/conrad/test-snakemake/fastq-files/A077-H36-15-04-2009_2.fastq.gz --ref /home/conrad/test-snakemake/st12_ref.fna --outdir /home/conrad/test-snakemake/A077-H36-15-04-2009 --cpus 8
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-13T214805.673775.snakemake.log

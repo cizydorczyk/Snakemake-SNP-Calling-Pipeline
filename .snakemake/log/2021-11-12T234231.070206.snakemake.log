@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 39 of /home/conrad/test-snakemake/Snakefile:
+Missing input files for rule test:
+/home/conrad/test-snakemake/A077-H36-15-04-2009_1.fastq.gz
+/home/conrad/test-snakemake/A077-H36-15-04-2009_2.fastq.gz

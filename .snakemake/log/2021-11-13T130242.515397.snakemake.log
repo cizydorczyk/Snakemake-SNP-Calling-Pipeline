@@ -1,0 +1,2 @@
+SyntaxError in line 5 of /home/conrad/test-snakemake/Snakefile:
+keyword can't be an expression (Snakefile, line 5)

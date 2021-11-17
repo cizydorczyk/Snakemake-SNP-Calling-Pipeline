@@ -1,0 +1,36 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job            count    min threads    max threads
+-----------  -------  -------------  -------------
+snippy             1              1              1
+snippy_core        1              1              1
+total              2              1              1
+
+Select jobs to execute...
+
+[Sat Nov 13 21:57:20 2021]
+rule snippy_core:
+    input: /home/conrad/test-snakemake/raw-snippy-output/A077-H36-15-04-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H201-11-05-2009
+    output: test.snippycore.fileslist.txt
+    jobid: 4
+    resources: tmpdir=/tmp
+
+echo /home/conrad/test-snakemake/raw-snippy-output/A077-H36-15-04-2009 /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009 /home/conrad/test-snakemake/raw-snippy-output/A077-H201-11-05-2009 > test.snippycore.fileslist.txt
+[Sat Nov 13 21:57:20 2021]
+Finished job 4.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Sat Nov 13 21:57:20 2021]
+localrule snippy:
+    input: /home/conrad/test-snakemake/raw-snippy-output/A077-H36-15-04-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H201-11-05-2009, test.snippycore.fileslist.txt
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Sat Nov 13 21:57:20 2021]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-13T215720.505009.snakemake.log

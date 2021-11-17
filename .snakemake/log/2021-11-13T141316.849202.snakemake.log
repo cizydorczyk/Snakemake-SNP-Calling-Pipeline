@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 42 of /home/conrad/test-snakemake/Snakefile:
+Missing input files for rule run_snippy:
+fastq_files_dict[wildcards.sample]["R2"]
+fastq_files_dict[wildcards.sample]["R1"]
