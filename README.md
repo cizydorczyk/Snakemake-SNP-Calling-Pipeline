@@ -8,3 +8,9 @@ Note that snp-dists produces a SNP matrix but not p-distances. Use MegaX for tha
 
 # Tutorial:
 To come...
+
+
+## Resources for snakemake and examples of other pipelines:
+BacDist: A relatively new snp pipeline (https://github.com/MigleSur/BacDist)
+Example of a VERY clean snakemake workflow (https://github.com/snakemake-workflows/rna-seq-star-deseq2)
+A custom snp pipeline running similar tools (an example of how to incorporate them; for learning purposes) (https://github.com/CJREID/snplord)
