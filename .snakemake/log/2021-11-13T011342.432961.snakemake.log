@@ -1,8 +1,0 @@
-Building DAG of jobs...
-InputFunctionException in line 50 of /home/conrad/test-snakemake/Snakefile:
-Error:
-  AttributeError: 'Wildcards' object has no attribute 'sample'
-Wildcards:
-
-Traceback:
-  File "/home/conrad/test-snakemake/Snakefile", line 30, in get_reads

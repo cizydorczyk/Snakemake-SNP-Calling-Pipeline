@@ -1,2 +1,0 @@
-SyntaxError in line 141 of /home/conrad/test-snakemake/Snakefile.smk:
-Unexpected keyword st in rule definition (Snakefile.smk, line 141)

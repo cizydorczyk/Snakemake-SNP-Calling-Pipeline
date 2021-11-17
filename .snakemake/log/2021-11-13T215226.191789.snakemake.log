@@ -1,3 +1,0 @@
-WildcardError:
-No values given for wildcard 'sample'.
-  File "/home/conrad/test-snakemake/Snakefile", line 80, in <module>

@@ -1,3 +1,0 @@
-WildcardError:
-No values given for wildcard 'output'.
-  File "/home/conrad/test-snakemake/Snakefile.smk", line 247, in <module>

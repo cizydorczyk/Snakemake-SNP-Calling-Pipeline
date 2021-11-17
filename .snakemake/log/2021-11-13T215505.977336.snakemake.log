@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 77 of /home/conrad/test-snakemake/Snakefile:
-Missing input files for rule snippy_core:
-

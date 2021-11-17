@@ -1,5 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 92 of /home/conrad/test-snakemake/Snakefile.smk:
-Missing input files for rule all:
-/home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.iqtree
-/home/conrad/test-snakemake/iqtree/12.no_ref_with_outgroups.iqtree

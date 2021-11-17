@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 118 of /home/conrad/test-snakemake/Snakefile.smk:
-Missing input files for rule run_remove_seqs:
-/home/conrad/test-snakemake/snippy-core/12.test.txt
