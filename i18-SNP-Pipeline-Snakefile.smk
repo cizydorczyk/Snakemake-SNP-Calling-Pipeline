@@ -5,8 +5,8 @@ import sys
 # Set up config variables
 ##############################################
 # Set up config variables:
-if os.path.exists('config.yaml'):
-    configfile: 'config.yaml'
+# if os.path.exists('config.yaml'):
+#     configfile: 'config.yaml'
 
 fastq_dir = config['fastq_dir']
 project_dir = config['project_dir']
@@ -65,6 +65,9 @@ for isolate in isolate_list:
 ##############################################
 # Set up directories (since snippy-core/iqtree/cfml complain if directory doesn't exist)
 ##############################################
+
+if not os.path.isdir(project_dir):
+    os.mkdir(project_dir)
 
 if not os.path.isdir(os.path.join(project_dir, "snippy-core")):
     os.mkdir(os.path.join(project_dir, "snippy-core"))
