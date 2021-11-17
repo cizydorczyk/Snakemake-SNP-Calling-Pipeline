@@ -1,0 +1,193 @@
+IQ-TREE multicore version 2.0.3 for Linux 64-bit built Apr 26 2020
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    conrad-Precision-Tower-3620 (AVX2, FMA3, 62 GB RAM)
+Command: iqtree -s /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln -m MFP -bb 10000 -nt AUTO -pre /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups
+Seed:    945444 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Nov 17 11:59:14 2021
+Kernel:  AVX+FMA - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+WARNING: 42152 sites contain only gaps or ambiguous characters.
+Alignment has 4 sequences with 1840498 columns, 72 distinct patterns
+3 parsimony-informative, 14 singleton sites, 1840481 constant sites
+                      Gap/Ambiguity  Composition  p-value
+   1  A077-H138-28-05-2009    6.33%    failed      0.00%
+   2  A077-H201-11-05-2009    2.36%    failed      0.00%
+   3  A077-H202-25-05-2009    2.33%    failed      0.00%
+   4  A077-H36-15-04-2009     5.32%    failed      0.02%
+****  TOTAL                   4.08%  4 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: minimal branch length is reduced to 0.000000054333 for long alignment
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+62930 trees examined
+Threads: 1 / Time: 8.000 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -2440697
+Threads: 2 / Time: 6.314 sec / Speedup: 1.267 / Efficiency: 63% / LogL: -2440697
+Threads: 3 / Time: 6.094 sec / Speedup: 1.313 / Efficiency: 44% / LogL: -2440697
+BEST NUMBER OF THREADS: 2
+
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -2440656.405
+Optimal log-likelihood: -2440656.291
+Rate parameters:  A-C: 88.78283  A-G: 34.54885  A-T: 2.37633  C-G: 0.18636  C-T: 88.61295  G-T: 1.00000
+Base frequencies:  A: 0.309  C: 0.189  G: 0.192  T: 0.309
+Proportion of invariable sites: 0.500
+Gamma shape alpha: 0.020
+Parameters optimization took 1 rounds (0.000 sec)
+Time for fast ML tree search: 0.002 seconds
+
+NOTE: ModelFinder requires 2 MB RAM!
+ModelFinder will test up to 286 DNA models (sample size: 1840498) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  1  GTR+F         2440656.208  13  4881338.417  4881338.417  4881499.949
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  2  GTR+F+I       2440656.147  14  4881340.295  4881340.295  4881514.253
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  3  GTR+F+G4      2440656.147  14  4881340.295  4881340.295  4881514.253
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  4  GTR+F+I+G4    2440656.148  15  4881342.295  4881342.295  4881528.678
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  5  GTR+F+R2      2440656.147  15  4881342.295  4881342.295  4881528.678
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  6  GTR+F+R3      2440656.147  17  4881346.295  4881346.295  4881557.529
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 14  SYM           2493277.963  10  4986575.927  4986575.927  4986700.182
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 27  TVM+F         2440656.049  12  4881336.099  4881336.099  4881485.205
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 40  TVMe          2493277.794  9   4986573.589  4986573.589  4986685.419
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 53  TIM3+F        2440659.191  11  4881340.381  4881340.382  4881477.062
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 66  TIM3e         2493281.535  8   4986579.070  4986579.070  4986678.474
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 79  TIM2+F        2440660.606  11  4881343.211  4881343.212  4881479.892
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 92  TIM2e         2493281.404  8   4986578.808  4986578.808  4986678.212
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+105  TIM+F         2440660.538  11  4881343.077  4881343.077  4881479.758
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+118  TIMe          2493282.107  8   4986580.214  4986580.214  4986679.619
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+131  TPM3u+F       2440659.193  10  4881338.385  4881338.385  4881462.641
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+144  TPM3+F        2440659.192  10  4881338.385  4881338.385  4881462.640
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+157  TPM2u+F       2440660.518  10  4881341.035  4881341.036  4881465.291
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+170  TPM2+F        2440660.518  10  4881341.035  4881341.036  4881465.291
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+183  K3Pu+F        2440660.630  10  4881341.259  4881341.260  4881465.515
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+196  K3P           2493281.895  7   4986577.790  4986577.790  4986664.769
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+209  TN+F          2440662.147  10  4881344.293  4881344.293  4881468.549
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+222  TNe           2493283.596  7   4986581.192  4986581.192  4986668.171
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+235  HKY+F         2440662.353  9   4881342.705  4881342.705  4881454.535
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+248  K2P           2493283.795  6   4986579.591  4986579.591  4986654.144
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+261  F81+F         2440664.912  8   4881345.823  4881345.824  4881445.228
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+274  JC            2493286.102  5   4986582.205  4986582.205  4986644.332
+Akaike Information Criterion:           TVM+F
+Corrected Akaike Information Criterion: TVM+F
+Bayesian Information Criterion:         F81+F
+Best-fit model: F81+F chosen according to BIC
+
+All model information printed to /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.model.gz
+CPU time for ModelFinder: 37.192 seconds (0h:0m:37s)
+Wall-clock time for ModelFinder: 20.772 seconds (0h:0m:20s)
+Generating 10000 samples for ultrafast bootstrap (seed: 945444)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -2440664.912
+Optimal log-likelihood: -2440664.912
+Rate parameters:  A-C: 1.00000  A-G: 1.00000  A-T: 1.00000  C-G: 1.00000  C-T: 1.00000  G-T: 1.00000
+Base frequencies:  A: 0.309  C: 0.189  G: 0.192  T: 0.309
+Parameters optimization took 1 rounds (0.000 sec)
+Computing ML distances based on estimated model parameters... 0.000 sec
+Computing BIONJ tree...
+0.000 seconds
+Log-likelihood of BIONJ tree: -2440664.915
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 99 parsimony trees... 0.007 second
+Computing log-likelihood of 2 initial trees ... 0.000 seconds
+Current best score: -2440664.912
+
+Do NNI search on 3 best initial trees
+Finish initializing candidate tree set (3)
+Current best tree score: -2440664.912 / CPU time: 0.040
+Number of iterations: 3
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 10 / LogL: -2440674.081 / Time: 0h:0m:0s
+Iteration 20 / LogL: -2440672.685 / Time: 0h:0m:0s
+Iteration 30 / LogL: -2440664.912 / Time: 0h:0m:0s (0h:0m:2s left)
+Iteration 40 / LogL: -2440672.685 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 50 / LogL: -2440672.685 / Time: 0h:0m:1s (0h:0m:1s left)
+Log-likelihood cutoff on original alignment: -2440701.726
+Iteration 60 / LogL: -2440664.912 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 70 / LogL: -2440664.912 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 80 / LogL: -2440674.081 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 90 / LogL: -2440664.912 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 100 / LogL: -2440674.081 / Time: 0h:0m:2s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -2440701.726
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 1.000
+TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:0m:3s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -2440664.912
+Optimal log-likelihood: -2440664.912
+Rate parameters:  A-C: 1.00000  A-G: 1.00000  A-T: 1.00000  C-G: 1.00000  C-T: 1.00000  G-T: 1.00000
+Base frequencies:  A: 0.309  C: 0.189  G: 0.192  T: 0.309
+Parameters optimization took 1 rounds (0.000 sec)
+BEST SCORE FOUND : -2440664.912
+Creating bootstrap support values...
+Split supports printed to NEXUS file /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.splits.nex
+Total tree length: 0.000
+
+Total number of iterations: 101
+CPU time used for tree search: 4.113 sec (0h:0m:4s)
+Wall-clock time used for tree search: 2.940 sec (0h:0m:2s)
+Total CPU time used: 4.298 sec (0h:0m:4s)
+Total wall-clock time used: 3.089 sec (0h:0m:3s)
+
+Computing bootstrap consensus tree...
+Reading input file /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.splits.nex...
+4 taxa and 7 splits.
+Consensus tree written to /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.contree
+Reading input trees file /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.contree
+Log-likelihood of consensus tree: -2440665.014
+
+Analysis results written to: 
+  IQ-TREE report:                /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.iqtree
+  Maximum-likelihood tree:       /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.treefile
+  Likelihood distances:          /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.splits.nex
+  Consensus tree:                /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.contree
+  Screen log file:               /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.log
+
+Date and Time: Wed Nov 17 11:59:39 2021

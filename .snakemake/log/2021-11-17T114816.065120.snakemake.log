@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+clonalframeml        2              1              1
+iqtree               1              1              1
+maskrcsvg            2              1              1
+total                6              1              1
+
+Select jobs to execute...
+
+[Wed Nov 17 11:48:16 2021]
+rule maskrcsvg:
+    input: /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln
+    output: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln
+    jobid: 14
+    wildcards: output=/home/conrad/test-snakemake/, st=12, remove_seqs_flag_no_dot=no_ref_without_outgroups
+    resources: tmpdir=/tmp
+
+maskrc-svg.py --aln /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln --out /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln --regions /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.regions.txt /home/conrad/test-snakemake/cfml/12.no_ref_without_outgroups
+[Wed Nov 17 11:48:20 2021]
+Error in rule maskrcsvg:
+    jobid: 14
+    output: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln
+    shell:
+        maskrc-svg.py --aln /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln --out /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln --regions /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.regions.txt /home/conrad/test-snakemake/cfml/12.no_ref_without_outgroups
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-17T114816.065120.snakemake.log

@@ -1,0 +1,99 @@
+### echo snippy 4.6.0
+### cd /home/conrad/test-snakemake
+
+### /home/conrad/anaconda3/envs/i18_snp_pipeline_env_testing/bin/snippy --R1 /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_1.fastq.gz --R2 /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_2.fastq.gz --ref /home/conrad/test-snakemake/st12_ref.fna --outdir /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009 --cpus 8 --minfrac 0.9
+
+### samtools faidx reference/ref.fa
+
+
+### bwa index reference/ref.fa
+
+[bwa_index] Pack FASTA... 0.02 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 0.30 seconds elapse.
+[bwa_index] Update BWT... 0.01 sec
+[bwa_index] Pack forward-only FASTA... 0.02 sec
+[bwa_index] Construct SA from BWT and Occ... 0.16 sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa index reference/ref.fa
+[main] Real time: 0.865 sec; CPU: 0.509 sec
+
+### mkdir -p reference/genomes && cp -f reference/ref.fa reference/genomes/ref.fa
+
+
+### ln -sf reference/ref.fa .
+
+
+### ln -sf reference/ref.fa.fai .
+
+
+### mkdir -p reference/ref && gzip -c reference/ref.gff > reference/ref/genes.gff.gz
+
+
+### bwa mem  -Y -M -R '@RG\tID:A077-H138-28-05-2009\tSM:A077-H138-28-05-2009' -t 8 reference/ref.fa /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A077-H138-28-05-2009_2.fastq.gz | samclip --max 10 --ref reference/ref.fa.fai | samtools sort -n -l 0 -T /tmp --threads 3 -m 2000M | samtools fixmate -m --threads 3 - - | samtools sort -l 0 -T /tmp --threads 3 -m 2000M | samtools markdup -T /tmp --threads 3 -r -s - - > snps.bam
+
+COMMAND: samtools markdup -T /tmp --threads 3 -r -s - -
+READ: 554341
+WRITTEN: 547277
+EXCLUDED: 698
+EXAMINED: 553643
+PAIRED: 549494
+SINGLE: 4149
+DUPLICATE PAIR: 4840
+DUPLICATE SINGLE: 2224
+DUPLICATE PAIR OPTICAL: 0
+DUPLICATE SINGLE OPTICAL: 0
+DUPLICATE NON PRIMARY: 0
+DUPLICATE NON PRIMARY OPTICAL: 0
+DUPLICATE PRIMARY TOTAL: 7064
+DUPLICATE TOTAL: 7064
+ESTIMATED_LIBRARY_SIZE: 15504545
+
+### samtools index snps.bam
+
+
+### fasta_generate_regions.py reference/ref.fa.fai 124750 > reference/ref.txt
+
+
+### freebayes-parallel reference/ref.txt 8 -p 2 -P 0 -C 2 -F 0.05 --min-coverage 10 --min-repeat-entropy 1.0 -q 13 -m 60 --strict-vcf   -f reference/ref.fa snps.bam > snps.raw.vcf
+
+
+### bcftools view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=10 && (FMT/AO)/(FMT/DP)>=0.9' snps.raw.vcf  | vt normalize -r reference/ref.fa - | bcftools annotate --remove '^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL' > snps.filt.vcf
+
+
+### cp snps.filt.vcf snps.vcf
+
+
+### /home/conrad/anaconda3/envs/i18_snp_pipeline_env_testing/bin/snippy-vcf_to_tab --gff reference/ref.gff --ref reference/ref.fa --vcf snps.vcf > snps.tab
+
+Loading reference: reference/ref.fa
+Loaded 1 sequences.
+Loading features: reference/ref.gff
+Parsing variants: snps.vcf
+Converted 450 SNPs to TAB format.
+
+### /home/conrad/anaconda3/envs/i18_snp_pipeline_env_testing/bin/snippy-vcf_extract_subs snps.filt.vcf > snps.subs.vcf
+
+
+### bcftools convert -Oz -o snps.vcf.gz snps.vcf
+
+
+### bcftools index -f snps.vcf.gz
+
+
+### bcftools consensus --sample A077-H138-28-05-2009 -f reference/ref.fa -o snps.consensus.fa snps.vcf.gz
+
+Applied 450 variants
+
+### bcftools convert -Oz -o snps.subs.vcf.gz snps.subs.vcf
+
+
+### bcftools index -f snps.subs.vcf.gz
+
+
+### bcftools consensus --sample A077-H138-28-05-2009 -f reference/ref.fa -o snps.consensus.subs.fa snps.subs.vcf.gz
+
+Applied 606 variants
+
+### rm -f snps.subs.vcf.gz snps.subs.vcf.gz.csi snps.subs.vcf.gz.tbi
+

@@ -91,22 +91,21 @@ def get_reads(wildcards):
 rule all:
     input:
         #### snippy: ####
-        # expand(os.path.join(project_dir,"raw-snippy-output","{sample}"),sample=isolate_list),
         expand("{output}raw-snippy-output/{sample}", output=project_dir, sample=isolate_list),
         #### snippy-core: ####
-        # os.path.join(project_dir,"snippy-core") + "/" + st + ".full.aln",
         expand("{output}snippy-core/{st}.full.aln", output=project_dir, st=st),
         #### snippy-clean_full_aln: ####
         expand("{output}snippy-core/{st}.clean.full.aln", output=project_dir, st=st),
         #### remove_seq: ####
-        # expand("{output}snippy-core/{st}.no_ref.clean.full.aln", output=project_dir, st=st),
-        # expand("{output}snippy-core/{st}.no_ref_no_outgroups.clean.full.aln", output=project_dir, st=st)
         expand("{output}snippy-core/{st}.{remove_seqs_flag}clean.full.aln", output=project_dir, st=st, remove_seqs_flag=remove_seqs_flag),
         #### iqtree ####
-        # expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}.iqtree", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
         expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}.contree", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot) if len(isolate_list) >= 4 else expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}.treefile", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot),
         #### cfml ####
-        expand("{output}cfml/{st}.{remove_seqs_flag_no_dot}.labelled_tree.newick", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
+        expand("{output}cfml/{st}.{remove_seqs_flag_no_dot}.labelled_tree.newick", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot),
+        #### maskrcsvg ####
+        expand("{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot),
+        #### snpdists ####
+        expand("{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln.snpdists_matrix.txt", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
 
 ##############################################
 # Individual target rules
@@ -115,13 +114,11 @@ rule all:
 ### Run snippy only: ###
 rule run_snippy:
     input:
-        # expand(os.path.join(project_dir, "raw-snippy-output", "{sample}"), sample=isolate_list),
         expand("{output}raw-snippy-output/{sample}",output=project_dir,sample=isolate_list)
 
 ### Run up to snippy core only: ###
 rule run_snippy_core:
     input:
-        # os.path.join(project_dir,"snippy-core") + "/" + st + ".full.aln"
         expand("{output}snippy-core/{st}.full.aln",output=project_dir,st=st)
 
 ### Run up to snippy-clean_full_aln only: ###
@@ -132,20 +129,27 @@ rule run_snippy_clean:
 ### Run up to remove ref/outgroups only: ###
 rule run_remove_seqs:
     input:
-        # expand("{output}snippy-core/{st}.no_ref.clean.full.aln", output=project_dir, st=st),
-        # expand("{output}snippy-core/{st}.no_ref_no_outgroups.clean.full.aln", output=project_dir, st=st)
         expand("{output}snippy-core/{st}.{remove_seqs_flag}clean.full.aln", output=project_dir, st=st, remove_seqs_flag=remove_seqs_flag),
 
 ### Run up to iqtree only: ###
 rule run_iqtree:
     input:
-        # expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}iqtree", output=project_dir, st=st, remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
         expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}.contree",output=project_dir,st=st,remove_seqs_flag_no_dot=remove_seqs_flag_no_dot) if len(isolate_list) >= 4 else expand("{output}iqtree/{st}.{remove_seqs_flag_no_dot}.treefile",output=project_dir,st=st,remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
 
 ### Run up to cfml only: ###
 rule run_cfml:
     input:
         expand("{output}cfml/{st}.{remove_seqs_flag_no_dot}.labelled_tree.newick",output=project_dir,st=st,remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
+
+### Run up to maskrc-svg only: ###
+rule run_maskrcsvg:
+    input:
+        expand("{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln",output=project_dir,st=st,remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
+
+### Run up to snp-dists only: ###
+rule run_snpdists:
+    input:
+        expand("{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln.snpdists_matrix.txt",output=project_dir,st=st,remove_seqs_flag_no_dot=remove_seqs_flag_no_dot)
 
 ##############################################
 # Individual rules
@@ -225,12 +229,6 @@ rule iqtree:
         "iqtree -s {input[0]} {params.iqtree_params} -pre {params.iqtree_prefix}"
 
 ### ClonalFrameML rule: ###
-# cfml_ending = ""
-# if len(isolate_list) >= 4:
-#     cfml_ending = ".contree"
-# elif len(isolate_list) < 4:
-#     cfml_ending = ".treefile"
-#
 rule clonalframeml:
     input:
         tree = "{output}iqtree/{st}.{remove_seqs_flag_no_dot}.contree" if len(isolate_list) >= 4 else "{output}/iqtree/{st}.{remove_seqs_flag_no_dot}.iqtree",
@@ -241,3 +239,25 @@ rule clonalframeml:
         cfml_prefix = "{output}cfml/{st}.{remove_seqs_flag_no_dot}"
     shell:
         "ClonalFrameML {input.tree} {input.fasta} {params.cfml_prefix} -em true -show_progress true"
+
+### maskrc-svg rule: ###
+rule maskrcsvg:
+    input:
+        fasta = "{output}snippy-core/{st}.{remove_seqs_flag_no_dot}.clean.full.aln",
+        cfml_tree = "{output}cfml/{st}.{remove_seqs_flag_no_dot}.labelled_tree.newick" # needed to force running of maskrcsvg AFTER cfml...otherwise, since input is from snippy-core, snakemake tries to run maskrcsvg BEFORE cfml, which obviously won't work. I am sure there is a proper way to specify this using wildcards, etc., but this approach works for now.
+    output:
+        "{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln"
+    params:
+        cfml_output_prefix = "{output}cfml/{st}.{remove_seqs_flag_no_dot}",
+        maskrc_regions_file = "{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.regions.txt"
+    shell:
+        "maskrc-svg.py --aln {input.fasta} --out {output} --regions {params.maskrc_regions_file} {params.cfml_output_prefix}"
+
+### snp-dists rule: ###
+rule snpdists:
+    input:
+        "{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln"
+    output:
+        "{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.clean.full.aln.snpdists_matrix.txt"
+    shell:
+        "snp-dists {input} > {output}"

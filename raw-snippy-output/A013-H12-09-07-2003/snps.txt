@@ -1,0 +1,11 @@
+DateTime	2021-11-17T11:44:57
+ReadFiles	/home/conrad/test-snakemake/fastq-files/A013-H12-09-07-2003_1.fastq.gz /home/conrad/test-snakemake/fastq-files/A013-H12-09-07-2003_2.fastq.gz
+Reference	/home/conrad/test-snakemake/st12_ref.fna
+ReferenceSize	1840498
+Software	snippy 4.6.0
+Variant-COMPLEX	2384
+Variant-DEL	77
+Variant-INS	62
+Variant-MNP	211
+Variant-SNP	8698
+VariantTotal	11432

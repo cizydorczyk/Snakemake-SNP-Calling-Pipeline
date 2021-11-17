@@ -1,0 +1,51 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job         count    min threads    max threads
+--------  -------  -------------  -------------
+all             1              1              1
+snpdists        2              1              1
+total           3              1              1
+
+Select jobs to execute...
+
+[Wed Nov 17 12:09:08 2021]
+rule snpdists:
+    input: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln
+    output: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln.snpdists_matrix.txt
+    jobid: 15
+    wildcards: output=/home/conrad/test-snakemake/, st=12, remove_seqs_flag_no_dot=no_ref_with_outgroups
+    resources: tmpdir=/tmp
+
+snp-dists /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln > /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln.snpdists_matrix.txt
+[Wed Nov 17 12:09:08 2021]
+Finished job 15.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Wed Nov 17 12:09:08 2021]
+rule snpdists:
+    input: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln
+    output: /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln.snpdists_matrix.txt
+    jobid: 16
+    wildcards: output=/home/conrad/test-snakemake/, st=12, remove_seqs_flag_no_dot=no_ref_without_outgroups
+    resources: tmpdir=/tmp
+
+snp-dists /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln > /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln.snpdists_matrix.txt
+[Wed Nov 17 12:09:08 2021]
+Finished job 16.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Wed Nov 17 12:09:08 2021]
+localrule all:
+    input: /home/conrad/test-snakemake/raw-snippy-output/A077-H36-15-04-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H138-28-05-2009, /home/conrad/test-snakemake/raw-snippy-output/A077-H201-11-05-2009, /home/conrad/test-snakemake/raw-snippy-output/A013-H12-09-07-2003, /home/conrad/test-snakemake/raw-snippy-output/A077-H202-25-05-2009, /home/conrad/test-snakemake/snippy-core/12.full.aln, /home/conrad/test-snakemake/snippy-core/12.clean.full.aln, /home/conrad/test-snakemake/snippy-core/12.no_ref_with_outgroups.clean.full.aln, /home/conrad/test-snakemake/snippy-core/12.no_ref_without_outgroups.clean.full.aln, /home/conrad/test-snakemake/iqtree/12.no_ref_with_outgroups.contree, /home/conrad/test-snakemake/iqtree/12.no_ref_without_outgroups.contree, /home/conrad/test-snakemake/cfml/12.no_ref_with_outgroups.labelled_tree.newick, /home/conrad/test-snakemake/cfml/12.no_ref_without_outgroups.labelled_tree.newick, /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln, /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln, /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_with_outgroups.clean.full.aln.snpdists_matrix.txt, /home/conrad/test-snakemake/cfml/12.rc_masked.no_ref_without_outgroups.clean.full.aln.snpdists_matrix.txt
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Wed Nov 17 12:09:08 2021]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: /home/conrad/test-snakemake/.snakemake/log/2021-11-17T120907.959860.snakemake.log
