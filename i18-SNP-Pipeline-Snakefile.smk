@@ -14,9 +14,12 @@ ref = config['ref']
 st = config['st']
 isolate_list_handle = config['isolate_list']
 fastq_endings = config['fastq_endings'].split(",")
-snippy_minfrac = config['snippy_minfrac']
 remove_ref = config['remove_ref']
 outgroups = config['outgroups']
+
+snippy_minfrac = config['snippy_minfrac']
+snippy_cleanup = config['snippy_cleanup']
+snippy_unmapped = config['snippy_unmapped']
 
 iqtree_model = config['model']
 iqtree_bb = config['bb']
@@ -168,12 +171,14 @@ rule snippy:
         sample = '[a-zA-Z0-9_-]+' # doesn't work without this...expands sample to include fastq-files/ for some reason...no idea why when sample can only take on values in isolate_list in 'rule snippy' above...
     params:
         reference=ref,
-        minfrac=snippy_minfrac
+        minfrac=snippy_minfrac,
+        cleanup = " --cleanup" if snippy_cleanup == "yes" else "",
+        unmapped = " --unmapped" if snippy_unmapped == "yes" else ""
     output:
         # directory(os.path.join(project_dir, "raw-snippy-output", "{sample}"))
         directory("{output}raw-snippy-output/{sample}")
     shell:
-        "snippy --R1 {input.R1} --R2 {input.R2} --ref {params.reference} --outdir {output} --cpus 8 --minfrac {params.minfrac}"
+        "snippy --R1 {input.R1} --R2 {input.R2} --ref {params.reference} --outdir {output} --cpus 8 --minfrac {params.minfrac}{params.cleanup}"
 
 ### snippy-core rule: ###
 rule snippy_core:

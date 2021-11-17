@@ -5,7 +5,11 @@ ref: "/home/conrad/test-snakemake/st12_ref.fna"
 st: "12"
 isolate_list: "/home/conrad/test-snakemake/isolate-list.txt"
 fastq_endings: "_1.fastq.gz,_2.fastq.gz"
+
+# snippy options:
 snippy_minfrac: "0.9"
+snippy_cleanup: "yes" # makes output dirs smaller; yes or no
+snippy_unmapped: "no" # for getting unmapped reads; do not set to yes yet
 
 # remove ref and outgroups options:
 remove_ref: "Reference" # snippy always names the reference sequence 'Reference'; can be an empty string
