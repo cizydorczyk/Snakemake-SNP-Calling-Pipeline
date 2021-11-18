@@ -52,14 +52,17 @@ else:
 with open(isolate_list_handle, 'r') as infile1:
     isolate_list = [line.strip() for line in infile1]
 
+# Combine isolate list with outgroups:
+isolate_list_with_outgroups = isolate_list + outgroups.split(",")
+
 # Get list of fastq files:
 fastq_files = [os.path.abspath(os.path.join(fastq_dir, fq)) for fq in os.listdir(fastq_dir)]
 
 # Create dict of fastq files for each isolate:
 # dict structure: {isolate1: {R1: forward reads, R2: reverse reads}, isolate2: {R1: ..., R2: ...}, ...}
 fastq_files_dict = {}
-for isolate in isolate_list:
-    
+for isolate in isolate_list_with_outgroups:
+
     freads = [fastq for fastq in fastq_files if isolate in fastq and fastq_endings[0] in fastq][0]
     rreads = [fastq for fastq in fastq_files if isolate in fastq and fastq_endings[1] in fastq][0]
 
@@ -97,7 +100,7 @@ def get_reads(wildcards):
 rule all:
     input:
         #### snippy: ####
-        expand("{output}raw-snippy-output/{sample}", output=project_dir, sample=isolate_list),
+        expand("{output}raw-snippy-output/{sample}", output=project_dir, sample=isolate_list_with_outgroups),
         #### snippy-core: ####
         expand("{output}snippy-core/{st}.full.aln", output=project_dir, st=st),
         #### snippy-clean_full_aln: ####
@@ -120,7 +123,7 @@ rule all:
 ### Run snippy only: ###
 rule run_snippy:
     input:
-        expand("{output}raw-snippy-output/{sample}",output=project_dir,sample=isolate_list)
+        expand("{output}raw-snippy-output/{sample}",output=project_dir,sample=isolate_list_with_outgroups)
 
 ### Run up to snippy core only: ###
 rule run_snippy_core:
@@ -239,7 +242,7 @@ rule iqtree:
 ### ClonalFrameML rule: ###
 rule clonalframeml:
     input:
-        tree = "{output}iqtree/{st}.{remove_seqs_flag_no_dot}.contree" if len(isolate_list) >= 4 else "{output}/iqtree/{st}.{remove_seqs_flag_no_dot}.iqtree",
+        tree = "{output}iqtree/{st}.{remove_seqs_flag_no_dot}.contree" if len(isolate_list) >= 4 else "{output}iqtree/{st}.{remove_seqs_flag_no_dot}.treefile",
         fasta = "{output}snippy-core/{st}.{remove_seqs_flag_no_dot}.clean.full.aln"
     output:
         "{output}cfml/{st}.{remove_seqs_flag_no_dot}.labelled_tree.newick"
