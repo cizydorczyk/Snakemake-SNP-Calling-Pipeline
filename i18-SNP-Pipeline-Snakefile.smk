@@ -186,7 +186,7 @@ rule snippy:
 ### snippy-core rule: ###
 rule snippy_core:
     input:
-        expand("{output}raw-snippy-output/{sample}", output=project_dir, sample=isolate_list)
+        expand("{output}raw-snippy-output/{sample}", output=project_dir, sample=isolate_list_with_outgroups)
     output:
         "{output}snippy-core/{st}.full.aln"
     params:
