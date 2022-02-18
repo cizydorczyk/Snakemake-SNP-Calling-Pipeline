@@ -53,7 +53,11 @@ with open(isolate_list_handle, 'r') as infile1:
     isolate_list = [line.strip() for line in infile1]
 
 # Combine isolate list with outgroups:
-isolate_list_with_outgroups = isolate_list + outgroups.split(",")
+## Converted to if/else statement Feb. 8, 2022 because was failing with empty outgroups string in config file
+if outgroups != "":
+    isolate_list_with_outgroups = isolate_list + outgroups.split(",")
+else:
+    isolate_list_with_outgroups = isolate_list
 
 # Get list of fastq files:
 fastq_files = [os.path.abspath(os.path.join(fastq_dir, fq)) for fq in os.listdir(fastq_dir)]
@@ -262,7 +266,7 @@ rule maskrcsvg:
         cfml_output_prefix = "{output}cfml/{st}.{remove_seqs_flag_no_dot}",
         maskrc_regions_file = "{output}cfml/{st}.rc_masked.{remove_seqs_flag_no_dot}.regions.txt"
     shell:
-        "maskrc-svg.py --aln {input.fasta} --out {output} --regions {params.maskrc_regions_file} {params.cfml_output_prefix}"
+        "maskrc-svg.py --symbol N --aln {input.fasta} --out {output} --regions {params.maskrc_regions_file} {params.cfml_output_prefix}"
 
 ### snp-dists rule: ###
 rule snpdists:
